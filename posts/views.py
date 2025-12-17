@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Q 
-from .models import Category, Post, Author
+from .models import Category, Post, Author , Tag
 
 def get_author(user):
     qs = Author.objects.filter(user=user)
@@ -62,3 +62,8 @@ def allposts(request):
         'posts': posts,
     }
     return render(request, 'all_posts.html', context)
+
+
+def tag_list(request):
+    tags = Tag.objects.all()
+    return render(request, "tags_list.html", {"tags": tags})
